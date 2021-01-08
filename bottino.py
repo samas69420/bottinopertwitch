@@ -4,11 +4,12 @@ from config import authcode as PASS
 from config import banned_words as badwords
 import socket
 import random
-import turtle
 import threading
 from playsound import playsound
 from gtts import gTTS
 import os
+from tkinter import *
+from PIL import ImageTk,Image
 
 def send_message(message):
     s.send(bytes("PRIVMSG #" + NICK + " :" + message + "\r\n", "UTF-8"))
@@ -16,14 +17,17 @@ def send_message(message):
 occupato2 = False
 def onMeme():
     global occupato2
+    global label
     if not occupato2:
         occupato2 = True
         n = random.randint(1,count_files("memes"))
         playsound('yeet.mp3')
         path = 'memes\\{}.png'.format(n)
-        window.bgpic(path)
-        time.sleep(10)
-        window.bgpic('nopic')
+        #img = ImageTk.PhotoImage(Image.open(path))
+        img = ridimensiona(path)
+        label['image'] = img
+        time.sleep(8)
+        label['image'] = ''
         occupato2 = False
 
 occupato = False
@@ -54,6 +58,15 @@ def onTTS(message):
 
 def count_files(dir):
     return len([1 for x in list(os.scandir(dir)) if x.is_file()])
+
+def ridimensiona(path):
+    img = Image.open(path)
+    formato = img.height/img.width # 1 -> quadrato ; >1 -> verticale ; <1 -> orizzontale
+    if formato > 1:
+        img = img.resize((round(1/formato*600), round(600)))
+    if formato < 1 or formato == 1:
+        img = img.resize((round(800),round(formato*800)))
+    return ImageTk.PhotoImage(img)
 
 #HOST = "irc.twitch.tv"
 #PORT = 6667
@@ -101,20 +114,18 @@ def bot():
                     onTTS(message)
                 else: send_message(username + ' contieniti bro')
 
-def screenloop():
-    global bcolor
-    global window
-    while True:
-        window.bgcolor(bcolor)
 
-window = turtle.Screen()
-window.setup(width=800, height=600)
-bcolor="green"
+root = Tk()
+root.title('dio bestia')
+root.geometry("800x600")
+root.config(bg="green")
+
+label = Label(bg="green")
+label.pack()
+
 t1 = threading.Thread(target=bot)
-t2 = threading.Thread(target=screenloop)
 t1.start()
-t2.start()
-window.mainloop()
+root.mainloop()
 
-# l'authcode https://twitchapps.com/tmi/
+# per l'authcode https://twitchapps.com/tmi/
 # per l'eseguibile con pyinstaller "pyinstaller --onefile -w bottino.py" nel cmd con il virtualenv attivo

@@ -1,0 +1,2 @@
+-meme (sceglie un meme a caso nella cartella dei meme e lo mostra per alcuni secondi con un audio)
+-tts <testo> (legge il testo in live a patto che sia max di 200 carattere, se contiene alcune parole bannate invece che il testo dice "nooo", gli accenti sono buggati)
