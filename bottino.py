@@ -120,11 +120,12 @@ root.geometry("800x600")
 root.config(bg="green")
 
 label = Label(bg="green")
-label.pack()
+label.pack(fill=BOTH, expand=True)
 
 t1 = threading.Thread(target=bot)
 t1.start()
 root.mainloop()
 
-# per l'authcode https://twitchapps.com/tmi/
+send_message('/me rip bottino insennia alli ancieli a spammare i memoni s4m4sSadCade s4m4sSadCade')
+# l'authcode https://twitchapps.com/tmi/
 # per l'eseguibile con pyinstaller "pyinstaller --onefile -w bottino.py" nel cmd con il virtualenv attivo
