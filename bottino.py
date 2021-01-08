@@ -62,9 +62,9 @@ def count_files(dir):
 def ridimensiona(path):
     img = Image.open(path)
     formato = img.height/img.width # 1 -> quadrato ; >1 -> verticale ; <1 -> orizzontale
-    if formato > 1:
+    if formato > 1 or formato == 1:
         img = img.resize((round(1/formato*600), round(600)))
-    if formato < 1 or formato == 1:
+    if formato < 1:
         img = img.resize((round(800),round(formato*800)))
     return ImageTk.PhotoImage(img)
 
