@@ -1,0 +1,10 @@
+nickname->
+authcode->
+messaggio di avvio->bot partito che worka incredibile WOOO s4m4sWeee s4m4sWeee
+messaggio di stop->rip bottino insennia alli ancieli a spammare gli smems s4m4sSadCade s4m4sSadCade
+suono per i meme->yeet.mp3
+suono per le parole bannate->noo.mp3
+cartella dei memes->memes
+parole bannate->
+abilita tts->true
+show time->5
